@@ -1,8 +1,8 @@
-defmodule FatBird.Couch.Db do
+defmodule ApiCase.Couch.Db do
     alias Couchdb.Connector.Writer
     alias Couchdb.Connector.Reader
     alias Couchdb.Connector
-    alias FatBird.Couch.Util 
+    alias ApiCase.Couch.Util 
 
     #http://127.0.0.1:5984/_utils/index.html
     @couch_config %{protocol: "http", hostname: "localhost", database: __MODULE__, port: 5984}
@@ -17,7 +17,8 @@ defmodule FatBird.Couch.Db do
     end
 
     def db_config(name) do
-        db_name = String.replace("#{name}_#{__MODULE__}", ".", "_")
+        #db_name = String.replace("#{name}_#{__MODULE__}", ".", "_")
+        name
         |>String.downcase
 
         %{@couch_config | database: db_name}

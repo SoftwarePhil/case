@@ -5,7 +5,7 @@ import { SurveyComponent } from './survey.component';
 const routes: Routes = [
   //TODO: make landing page component
   {
-    path:"home",
+    path:"survey",
     component: SurveyComponent 
   }
 ];

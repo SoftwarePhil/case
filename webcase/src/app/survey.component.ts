@@ -33,12 +33,6 @@ export class SurveyComponent implements OnInit {
   @Input()
   json: object;
 
-
-  click(result) {
-    console.log(result);
-
-  }
-
   ngOnInit() {
 		//get json from server ..
 		const temp = new Temp();
@@ -64,9 +58,19 @@ export class SurveyComponent implements OnInit {
       header.appendChild(btn);
     });
     surveyModel.onComplete
-      .add(result =>
+      .add(result => {
+
+        this.sendData(result.data)
         this.submitSurvey.emit(result.data)
+      
+      }
+        
       );
     Survey.SurveyNG.render('surveyElement', { model: surveyModel });
+  }
+
+  sendData(result) {
+    //TODO update with your own behavior    
+    console.log(result);
   }
 }
