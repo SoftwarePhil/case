@@ -76,7 +76,7 @@ export class SurveyComponent implements OnInit {
     Survey.SurveyNG.render('surveyElement', { model: surveyModel });
 
     //for testing
-    this.sendData(temp.testSurveyResults())
+    //this.sendData(temp.testSurveyResults())
   }
 
 

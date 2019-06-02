@@ -23,7 +23,7 @@ import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
  
     ngOnInit(){
         const good = "Good News, you seem to have this topic under control. "+ 
-        "Remind yourself of a good quality you have.  Put effort into practicing it."+ 
+        "Remind yourself of a good quality you have.  Put effort into practicing it. "+ 
         "Measure your progress against yourself, not what other people do."
         const emojiGood = '😀'
 

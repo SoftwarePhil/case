@@ -6,7 +6,7 @@ import { Injectable }  from '@angular/core';
 
 @Injectable()
 export class CaseService{
-    base_url: string = "localhost:4069/"
+    base_url: string = "3.130.63.206:4069/"
     url: string = "http://"+this.base_url+"api/"
 
     constructor (private http: HttpClient){}

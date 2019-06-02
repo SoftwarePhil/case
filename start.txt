@@ -1,0 +1,4 @@
+ng serve --host 0.0.0.0 --disable-host-check
+iex -S mix phx.server
+
+
