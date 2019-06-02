@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SurveyComponent } from './survey.component';
+import { AboutComponent } from './about.component';
+import { ResourcesComponent } from './resources.component';
 
 const routes: Routes = [
   //TODO: make landing page component
@@ -12,6 +14,14 @@ const routes: Routes = [
     path:"",
     redirectTo: "/start",
     pathMatch: 'full'
+  },
+  {
+    path:"about",
+    component: AboutComponent
+  },
+  {
+    path:"resources",
+    component: ResourcesComponent
   }
 ];
 

@@ -1,6 +1,7 @@
 import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
 import * as Survey from 'survey-angular';
 import * as widgets from 'surveyjs-widgets';
+
 import  { SurveyData }  from './surveydata';
 import { CaseService } from './case.service'
 

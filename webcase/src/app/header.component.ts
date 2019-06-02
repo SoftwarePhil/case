@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: "header-comp",
@@ -6,6 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./template/app.component.css']
 })
 
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
   title = 'webcase';
+
+  @Input() header: String
+  
+  ngOnInit(){
+
+  }
+
+  survey(){
+    
+  }
 }

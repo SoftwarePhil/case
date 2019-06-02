@@ -9,6 +9,8 @@ import { HeaderComponent } from './header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CaseService } from './case.service'
 import { ResultsComponent } from './results.component';
+import { AboutComponent } from './about.component';
+import { ResourcesComponent } from './resources.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { ResultsComponent } from './results.component';
     SurveyComponent,
     LandingPageComponent,
     HeaderComponent,
-    ResultsComponent
+    ResultsComponent,
+    AboutComponent,
+    ResourcesComponent
   ],
   imports: [
     BrowserModule,
