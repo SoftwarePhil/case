@@ -1,7 +1,8 @@
 import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
 import * as Survey from 'survey-angular';
 import * as widgets from 'surveyjs-widgets';
-import  { Temp }  from './temp';
+import  { SurveyData }  from './surveydata';
+import { CaseService } from './case.service'
 
 import 'inputmask/dist/inputmask/phone-codes/phone.js';
 
@@ -25,17 +26,23 @@ Survey.JsonObject.metaData.addProperty('page', 'popupdescription:text');
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'survey',
-  template: `<div class='survey-container contentcontainer codecontainer'><div id='surveyElement'></div></div>`
+  templateUrl: './template/survey.component.html'
 })
+
 export class SurveyComponent implements OnInit {
+  surveyResults: object
+  surveySubmitted: boolean = false
+  
   @Output() submitSurvey = new EventEmitter<any>();
+
+  constructor(private caseService: CaseService) {}
 
   @Input()
   json: object;
 
   ngOnInit() {
 		//get json from server ..
-		const temp = new Temp();
+		const temp = new SurveyData();
 		this.json = temp.get(); 
 
     const surveyModel = new Survey.Model(this.json);
@@ -67,10 +74,24 @@ export class SurveyComponent implements OnInit {
         
       );
     Survey.SurveyNG.render('surveyElement', { model: surveyModel });
+
+    //for testing
+    this.sendData(temp.testSurveyResults())
   }
 
-  sendData(result) {
+
+  sendData(result: any) {
     //TODO update with your own behavior    
     console.log(result);
+    
+    this.caseService.request({results:result}, "add")
+
+    .subscribe(
+        ok=>{
+          console.log(ok)
+          this.surveySubmitted = true
+          this.surveyResults = result
+        }, 
+        error=>console.log(error))
   }
 }

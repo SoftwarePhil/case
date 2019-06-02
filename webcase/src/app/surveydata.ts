@@ -1,15 +1,84 @@
-export class Temp{
+export class SurveyData{
 	
 	get(): Object{
-		return 	{
+		
+return {
 			"pages": [
+			 {
+			  "name": "Info",
+			  "elements": [
+			   {
+				"type": "text",
+				"name": "town",
+				"title": "What town do you live in?",
+				"isRequired": true,
+			   },
+			   {
+				"type": "dropdown",
+				"name": "grade",
+				"title": "What grade are you in?",
+				"isRequired": true,
+				"choices": [
+				 {
+				  "value": "1",
+				  "text": "1st"
+				 },
+				 {
+				  "value": "2",
+				  "text": "2nd"
+				 },
+				 {
+				  "value": "3",
+				  "text": "3rd"
+				 },
+				 {
+				  "value": "4",
+				  "text": "4th"
+				 },
+				 {
+				  "value": "5",
+				  "text": "5th"
+				 },
+				 {
+				  "value": "6",
+				  "text": "6th"
+				 },
+				 {
+				  "value": "7",
+				  "text": "7th"
+				 },
+				 {
+				  "value": "8",
+				  "text": "8th"
+				 },
+				 {
+				  "value": "9",
+				  "text": "Freshmen"
+				 },
+				 {
+				  "value": "10",
+				  "text": "Sophmore"
+				 },
+				 {
+				  "value": "11",
+				  "text": "Junior"
+				 },
+				 {
+				  "value": "12",
+				  "text": "Senior"
+				 }
+				]
+			   }
+			  ],
+			  "title": "Hello, tell us a bit about yourself"
+			 },
 			 {
 			  "name": "conflict1",
 			  "elements": [
 			   {
 				"type": "matrix",
 				"name": "conflict",
-				"title": "Do you always have the last word in a disagreement? ",
+				"title": "These questions look at how well you deal with conflict",
 				"isRequired": true,
 				"columns": [
 				 {
@@ -22,7 +91,7 @@ export class Temp{
 				 },
 				 {
 				  "value": "3",
-				  "text": "Occasionally/Sometimes"
+				  "text": "Sometimes"
 				 },
 				 {
 				  "value": "4",
@@ -35,38 +104,38 @@ export class Temp{
 				],
 				"rows": [
 				 {
-				  "value": "last_word",
+				  "value": "1",
 				  "text": "Do you always have to have the last word in a disagreement?"
 				 },
 				 {
-				  "value": "see_others_point",
+				  "value": "2",
 				  "text": "It is hard to see another's point of view?"
 				 },
 				 {
-				  "value": "keep_opinion",
+				  "value": "3",
 				  "text": "Do you always keep your opinion to yourself?"
 				 },
 				 {
-				  "value": "threatened_for_sharing",
+				  "value": "4",
 				  "text": "Have you been threatened for sharing your opinion?"
 				 },
 				 {
-				  "value": "uncomfortable_around_conflict",
+				  "value": "5",
 				  "text": "Are you uncomfortable around conflict?"
 				 }
 				],
 				"isAllRowRequired": true
 			   }
 			  ],
-			  "title": "Conflict (Page 1)"
+			  "title": "Conflict"
 			 },
 			 {
 			  "name": "anger1",
 			  "elements": [
 			   {
 				"type": "matrix",
-				"name": "question1",
-				"title": "Do you always have the last word in a disagreement? ",
+				"name": "anger",
+				"title": "These questions deal with anger",
 				"isRequired": true,
 				"columns": [
 				 {
@@ -79,7 +148,7 @@ export class Temp{
 				 },
 				 {
 				  "value": "3",
-				  "text": "Occasionally/Sometimes"
+				  "text": "Sometimes"
 				 },
 				 {
 				  "value": "4",
@@ -139,15 +208,15 @@ export class Temp{
 				"isAllRowRequired": true
 			   }
 			  ],
-			  "title": "Anger (Page 2)"
+			  "title": "Anger"
 			 },
 			 {
 			  "name": "selfesteem3",
 			  "elements": [
 			   {
 				"type": "matrix",
-				"name": "question2",
-				"title": "Do you always have the last word in a disagreement? ",
+				"name": "selfesteem",
+				"title": "These questions deal with your self-esteem",
 				"isRequired": true,
 				"columns": [
 				 {
@@ -160,7 +229,7 @@ export class Temp{
 				 },
 				 {
 				  "value": "3",
-				  "text": "Occasionally/Sometimes"
+				  "text": "Sometimes"
 				 },
 				 {
 				  "value": "4",
@@ -216,10 +285,87 @@ export class Temp{
 				"isAllRowRequired": true
 			   }
 			  ],
-			  "title": "Self Esteem"
+			  "title": "Self-Esteem"
 			 }
 			]
 		   }
-
-	}
 }
+
+testSurveyResults():object {
+	return {
+		"town": "Dallas",
+		"grade": "5",
+		"conflict": {
+		  "1": "1",
+		  "2": "1",
+		  "3": "1",
+		  "4": "1",
+		  "5": "1"
+		},
+		"anger": {
+		  "1": "1",
+		  "2": "1",
+		  "3": "1",
+		  "4": "1",
+		  "5": "1",
+		  "6": "1",
+		  "7": "1",
+		  "8": "1",
+		  "9": "1",
+		  "10": "1",
+		  "11": "1"
+		},
+		"selfesteem": {
+		  "1": "3",
+		  "2": "3",
+		  "3": "3",
+		  "4": "3",
+		  "5": "3",
+		  "6": "3",
+		  "7": "3",
+		  "8": "3",
+		  "9": "3",
+		  "10": "3"
+		}
+	  }
+}
+}
+
+/*
+{
+  "town": "Dallas",
+  "grade": "4",
+  "conflict": {
+    "1": "1",
+    "2": "1",
+    "3": "1",
+    "4": "1",
+    "5": "1"
+  },
+  "anger": {
+    "1": "1",
+    "2": "2",
+    "3": "4",
+    "4": "5",
+    "5": "5",
+    "6": "5",
+    "7": "5",
+    "8": "5",
+    "9": "5",
+    "10": "5",
+    "11": "5"
+  },
+  "selfesteem": {
+    "1": "2",
+    "2": "2",
+    "3": "2",
+    "4": "2",
+    "5": "2",
+    "6": "2",
+    "7": "2",
+    "8": "2",
+    "9": "2",
+    "10": "2"
+  }
+}
+*/

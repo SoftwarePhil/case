@@ -1,5 +1,6 @@
 defmodule ApiCaseWeb.Router do
   use ApiCaseWeb, :router
+  alias SurveyController
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -19,8 +20,11 @@ defmodule ApiCaseWeb.Router do
     get "/", PageController, :index
   end
 
+
   # Other scopes may use custom stacks.
-  # scope "/api", ApiCaseWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", ApiCaseWeb do
+    pipe_through :api
+
+    post "/add", SurveyController, :add
+  end
 end

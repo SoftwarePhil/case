@@ -1,0 +1,24 @@
+<h2>Thanks for taking the time to answer these questions!</h2>
+<div *ngIf="outputTextConflict">
+    <div><h3>Conflict Results:</h3></div>
+    <div class='emoji-style'>{{conflictEmoji}}</div>
+    
+    <div>{{outputTextConflict}}</div>
+</div>
+
+<br>
+
+<div *ngIf="outputTextAnger">
+    <div><h3>Anger Results:</h3></div>
+    <div class='emoji-style'>{{angerEmoji}}</div>
+
+    <div>{{outputTextAnger}}</div>
+</div>
+<br>
+
+<div *ngIf="outputTextSelfEsteem">
+    <div><h3>Self-Esteem Results:</h3></div>
+    <div class='emoji-style'>{{selfEsteemEmoji}}</div>
+    
+    <div>{{outputTextSelfEsteem}}</div>
+</div>

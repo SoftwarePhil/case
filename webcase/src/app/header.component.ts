@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './template/app.component.html',
+  selector: "header-comp",
+  templateUrl: './template/header.component.html',
   styleUrls: ['./template/app.component.css']
 })
-export class AppComponent {
+
+export class HeaderComponent {
   title = 'webcase';
 }

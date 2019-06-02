@@ -5,8 +5,13 @@ import { SurveyComponent } from './survey.component';
 const routes: Routes = [
   //TODO: make landing page component
   {
-    path:"survey",
+    path:"start",
     component: SurveyComponent 
+  },
+  {
+    path:"",
+    redirectTo: "/start",
+    pathMatch: 'full'
   }
 ];
 

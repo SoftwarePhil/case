@@ -2,14 +2,14 @@ defmodule ApiCase.Couch.Db do
     alias Couchdb.Connector.Writer
     alias Couchdb.Connector.Reader
     alias Couchdb.Connector
-    alias ApiCase.Couch.Util 
+    alias ApiCase.Couch.Util
 
     #http://127.0.0.1:5984/_utils/index.html
     @couch_config %{protocol: "http", hostname: "localhost", database: __MODULE__, port: 5984}
 
     def init_db(name) do
         db = db_config(name)
-        
+
         case Couchdb.Connector.Storage.storage_up(db) do
             {:ok, _msg} -> {:ok, db}
             {:error, msg} -> {:error, msg}
@@ -18,12 +18,11 @@ defmodule ApiCase.Couch.Db do
 
     def db_config(name) do
         #db_name = String.replace("#{name}_#{__MODULE__}", ".", "_")
-        name
-        |>String.downcase
+        db_name = name |> String.downcase
 
         %{@couch_config | database: db_name}
     end
-    
+
     @doc"""
         creates a new document with some id and body
         body must be JSON format
@@ -66,7 +65,7 @@ defmodule ApiCase.Couch.Db do
     @doc"""
     returns a document if found (not decoded from JSON)
     returns {:ok, document}
-    """    
+    """
     def valid_document?(db, key, error) do
         case Reader.get(db, key) do
             {:ok, data}      -> {:found, data}
@@ -78,12 +77,12 @@ defmodule ApiCase.Couch.Db do
     @doc"""
     returns a document if found decoded from JSON
     returns {:ok, document}
-    """  
+    """
     def get_document(db, key, error) do
         case Reader.get(db, key) do
-            {:ok, data} -> 
+            {:ok, data} ->
                 {:ok, Poison.decode!(data)}
-            {:error, _} -> {:error, error}  
+            {:error, _} -> {:error, error}
         end
     end
 
@@ -96,11 +95,11 @@ defmodule ApiCase.Couch.Db do
              new_list <-  Util.add_to_list(data[field], item),
              update_document(db, data, field, new_list, error) do
                  {:ok, item}
-                 
+
         else
             {:error, msg} -> {:error, msg}
         end
-     
+
     end
 
     def view_template(design_name, view_name, field) do
@@ -127,7 +126,7 @@ defmodule ApiCase.Couch.Db do
 
     def delete_document(db, key, error) do
             case get_document(db, key, error) do
-                {:ok, document} -> 
+                {:ok, document} ->
                     Couchdb.Connector.destroy(db, key, document["_rev"])
                     {:ok, "document deleted"}
             _ -> {:error, error}
@@ -135,6 +134,6 @@ defmodule ApiCase.Couch.Db do
     end
 
     def create_id do
-        :rand.uniform(15)
+        15 |> :crypto.strong_rand_bytes() |> :base64.encode() |> String.replace(" ", "")
     end
 end

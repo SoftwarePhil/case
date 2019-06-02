@@ -42,5 +42,7 @@ defmodule ApiCaseWeb.Endpoint do
     key: "_api_case_key",
     signing_salt: "gVzfOsMF"
 
+
+  plug CORSPlug
   plug ApiCaseWeb.Router
 end
