@@ -22,18 +22,18 @@ import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
     error: string
  
     ngOnInit(){
-        const good = "Good News, you seem to have this topic under control. "+ 
-        "Remind yourself of a good quality you have.  Put effort into practicing it. "+ 
-        "Measure your progress against yourself, not what other people do."
+        // const good = "Good News, you seem to have this topic under control. "+ 
+        // "Remember, how you respond to conflict will either hold you back or " +
+        // "push you towards success"
         const emojiGood = '😀'
 
-        const ok = "You might want to keep an eye on this topic. " +
-        "Find people who encourage you to try your best but don't insist on perfection."+
-        " Most of us do better when the pressure is off. "
+        // const ok = "You might want to keep an eye on this topic. " +
+        // "Find people who encourage you to try your best but don't insist on perfection."+
+        // " Most of us do better when the pressure is off. "
         const emojiOK = '😐'
 
         const bad = "This seems to be an area of struggle for you. "+
-        "Click here if you would like support from a local youth organization."
+        "Click on the resources tab to get support and help"
         const emojiBad = '🙁'
 
         console.log(this.surveyResults)
@@ -47,11 +47,17 @@ import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
             }
             
             if(conflictSum > 0 && conflictSum <= 11){
-                this.outputTextConflict = good
+                this.outputTextConflict = "Good News, you seem to have this topic under control. "+ 
+                "Remember, how you respond to conflict will either hold you back or " +
+                "push you towards success."
+
                 this.conflictEmoji = emojiGood
             }
             else if(conflictSum >= 11 && conflictSum < 21){
-                this.outputTextConflict = ok
+                this.outputTextConflict = "You might want to keep an eye on this topic. " +
+                "When facing conflict, remember, everyone has an opinion, you don't have to agree "+
+                "with it but you can still be open to their point of view."
+
                 this.conflictEmoji = emojiOK
             }
             else if (conflictSum >= 21){
@@ -66,11 +72,16 @@ import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
             }
 
             if(angerSum > 0 && angerSum < 11){
-                this.outputTextAnger = good
+                this.outputTextAnger = "Good News, you seem to have this topic under control. "+ 
+                "Remember, dealing with anger is never easy and one wrong decision can " +
+                "affect you for the rest of your life."
                 this.angerEmoji = emojiGood
             }
             else if(angerSum >= 11 && angerSum < 21){
-                this.outputTextAnger = ok
+                this.outputTextAnger =  "You might want to keep an eye on this topic. " +
+                "Remember, don't let your anger stay bottled up inside. There are healthy "+
+                "ways to deal with anger, you can talk a walk or find someone you trust to "+
+                "talk to."
                 this.angerEmoji = emojiOK
             }
             else if (angerSum >= 21){
@@ -86,10 +97,14 @@ import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
             }
 
             if(selfEsteemSum > 0 && selfEsteemSum < 11){
-                this.outputTextSelfEsteem = good
+                this.outputTextSelfEsteem = "Good News, you seem to have this topic under control. "+ 
+                "Remind yourself of a good quality you have. Put effort into practicing it. Measure "+
+                "your progress against yourself, not with what other people do." 
             }
             else if(selfEsteemSum >= 11 && selfEsteemSum < 21){
-                this.outputTextSelfEsteem = ok
+                this.outputTextSelfEsteem = "You might want to keep an eye on this topic. " +
+                "Find people who encourage you to try your best, but don't insist on perfection. "+
+                "Most of us do better when the pressure is off."
                 this.selfEsteemEmoji = emojiOK
             }
             else if (selfEsteemSum >= 21){
