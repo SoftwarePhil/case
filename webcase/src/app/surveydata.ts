@@ -14,7 +14,7 @@ return {
 	   },
 	   {
 		"type": "dropdown",
-		"name": "question1",
+		"name": "state",
 		"title": "What state do you live in?",
 		"isRequired": true,
 		"choices": [
@@ -80,6 +80,12 @@ return {
 		"type": "text",
 		"name": "City",
 		"title": "What city do you live in?",
+		"isRequired": true
+	   },
+	   {
+		"type": "text",
+		"name": "City",
+		"title": "What is the name of your school?",
 		"isRequired": true
 	   },
 	   {

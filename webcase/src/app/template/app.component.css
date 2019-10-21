@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'colors_of_autumnregular';
+ src: url('/assets/font/colors_of_autumn-webfont.woff2') format('woff2'),
+       url('/assets/font/colors_of_autumn-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -22,6 +31,7 @@ ul {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 50px;
+  font-family: colors_of_autumnregular;
 }
 
 .li-elm-sub{
