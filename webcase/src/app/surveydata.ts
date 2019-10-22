@@ -10,7 +10,7 @@ return {
 	   {
 		"type": "html",
 		"name": "about",
-		"html": "About this survey:\n<br>\nIn response to all of the school shootings and stabbings, also spending many years supporting youth and youth organization, we have come to the realization that it is not just the guns and the knives that are the problem.  The real challenge is the state of our youth! Homicide and suicide plague our youth!  Just as we are encouraging young people to use innovation to solve social problems, we have launched the CASE survey. CASE stands for Conﬂict Anger and, Self-Esteem.  This is a way for young people to self-identify if any of these are a challenge for them.  We are hoping through this app, to provide data to empower youth to make a change if this is an area of concern."
+		"html": ""
 	   },
 	   {
 		"type": "dropdown",
@@ -84,7 +84,7 @@ return {
 	   },
 	   {
 		"type": "text",
-		"name": "City",
+		"name": "school",
 		"title": "What is the name of your school?",
 		"isRequired": true
 	   },
@@ -94,6 +94,7 @@ return {
 		"title": "What grade are you in?",
 		"isRequired": true,
 		"choices": [
+		 {"value": "6", "text":"6th"},{"value": "7", "text":"7th"},
 		 {
 		  "value": "8",
 		  "text": "8th"

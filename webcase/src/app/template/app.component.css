@@ -32,6 +32,7 @@ ul {
   text-decoration: none;
   font-size: 50px;
   font-family: colors_of_autumnregular;
+  color: orange;
 }
 
 .li-elm-sub{
@@ -42,6 +43,7 @@ text-align: center;
 padding: 14px 16px;
 text-decoration: none;
 font-size: 25px;
+color: orange;
 }
 
 
