@@ -1,5 +1,4 @@
 import React from 'react';
-import './ResourcesPage.css'
 
 const ResourcesPage = () => (
   <div className="resources">

@@ -1,0 +1,44 @@
+.App-header {
+  background-color: black;
+  min-height: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+#header-div {
+  height: 100px;
+}
+
+#nav {
+  background-color: black;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.route-option {
+  padding: 10px;
+  border: solid $border-pink;
+  border-radius: 10px 10px 0 0;
+  border-bottom: none;
+  text-decoration: none;
+}
+
+.active {
+  border-width: thick;
+}
+
+.pink-font {
+  color: $neon-pink
+}
+
+.blue-font {
+  color: $neon-blue
+}
+
+.green-font {
+  color: $neon-green
+}
