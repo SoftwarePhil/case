@@ -1,8 +1,9 @@
 import React from 'react';
+import Questions from './Questions';
 
 const SurveyPage = () => (
   <div>
-    Survey
+    <Questions />
   </div>
 );
 

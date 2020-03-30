@@ -19,12 +19,15 @@
     "babel-plugin-transform-object-rest-spread": "6.23.0",
     "babel-preset-env": "1.5.2",
     "babel-preset-react": "6.24.1",
+    "bootstrap": "^4.4.1",
     "css-loader": "0.28.4",
     "express": "4.15.4",
     "extract-text-webpack-plugin": "3.0.0",
+    "jquery": "^3.4.1",
     "moment": "2.18.1",
     "node-sass": "4.12.0",
     "normalize.css": "7.0.0",
+    "popper.js": "^1.16.1",
     "react": "16.0.0",
     "react-addons-shallow-compare": "15.6.0",
     "react-dates": "^12.7.0",
@@ -43,4 +46,3 @@
     "webpack-dev-server": "2.5.1"
   }
 }
-

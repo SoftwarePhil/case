@@ -1,0 +1,57 @@
+.questions-container {
+  background: black;
+  width: 600px;
+  color: white;
+  min-height: 600px;
+}
+
+.grades {
+  border: none;
+  height: 40px;
+  width: 40px;
+  font-size: 20px;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.selected-grade {
+  border: none;
+  height: 40px;
+  width: 40px;
+  font-size: 20px;
+  border-radius: 50%;
+  text-align: center;
+  background: $button-blue;
+  color: white;
+}
+
+.input {
+  width: 50%;
+}
+
+.btn {
+  background: $button-blue;
+  border: $button-blue;
+  width: 100px;
+  color: white;
+}
+
+.error {
+  color: red;
+  font-style: bold;
+}
+
+.text-question {
+  float: right;
+  background: white;
+  color: black;
+}
+
+.text-answer {
+  background: $question-purple;
+  border-radius: 5px;
+  color: white;
+  border: $question-purple;
+}
+
+.slider-answer {}
