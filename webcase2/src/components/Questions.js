@@ -8,24 +8,13 @@ export default class Questions extends React.Component {
     grade: undefined,
     error: undefined,
     answerOptions: ['Never', 'Almost Never', 'Sometimes', 'Almost Always', 'Always'],
-    gradeOptions: ['6', '7', '8', '9', '10', '11', '12'],
-    conflictQuestions: [
-      'Do you always have to have the last word in a disagreement?',
-      `It is hard to see another's point of view?`,
-      'Are you uncomfortable around conflict?',
-    ],
+    gradeOptions: [],
+    stateOptions: [],
+    conflictQuestions: [],
     conflictAnswers: [],
-    angerQuestions: [
-      'When you get angry do you think of hurting yourself?',
-      'Do you keep your anger bottled up inside?',
-      'Does anyone around you take their anger out on you or the people you love?'
-    ],
+    angerQuestions: [],
     angerAnswers: [],
-    seQuestions: [
-      'Do you like what you see when you look in the mirror?',
-      'Do you remain friends with people that call you names or treat you badly?',
-      'Do people you love the most talk negative to you or put you down?',
-    ],
+    seQuestions: [],
     seAnswers: [],
     showBasicInfo: false,
     showConflictQuestions: true,
@@ -33,6 +22,46 @@ export default class Questions extends React.Component {
     showSEQuestions: false,
     showQuestionsCount: 1,
     showResults: false
+  };
+  componentDidMount() {
+    fetch('/case_prod/survey')
+    .then(res => res.json())
+    .then(result => {
+      console.log(result);
+      const conflict = [];
+      const anger = [];
+      const se = [];
+      let gradeOptions = [];
+      let stateOptions = [];
+      result.survey.map(object => {
+        console.log(object);
+        if(object.id === 'grade') {
+          gradeOptions = object.data;
+        }
+        if(object.id === 'state') {
+          stateOptions = object.data;
+        }
+        switch(object.label) {
+          case 'anger':
+            anger.push({id: object.id, text: object.data});
+            break;
+          case 'conflict':
+            conflict.push({id: object.id, text: object.data});
+            break;
+          case 'self esteem':
+            se.push({id: object.id, text: object.data});
+            break;
+        }
+      }); 
+      this.setState(() => ({
+        conflictQuestions: conflict,
+        angerQuestions: anger, 
+        seQuestions: se,
+        gradeOptions,
+        stateOptions
+      }));
+      console.log(this.state);
+    });
   };
   handleGradeButtonClick = (e) => {
     e.preventDefault();
@@ -64,6 +93,7 @@ export default class Questions extends React.Component {
       seAnswers: prevState.seAnswers.concat(answer),
       showQuestionsCount: prevState.showQuestionsCount + 1
     }));
+
   };
   handleInfoSectionSubmit = (e) => {
     e.preventDefault();
@@ -105,11 +135,9 @@ export default class Questions extends React.Component {
       showSEQuestions: false,
       showResults: true
     }));
+    this.props.switchDisplay(this.state.conflictAnswers, this.state.angerAnswers, this.state.seAnswers);
     console.log(this.state);
   }
-  componentDidMount() {
-    // api call to get questions using fetch() set state with questions
-  };
   render() {
     const conflictQuestions = this.state.conflictQuestions;
     const conflictAnswers = this.state.conflictAnswers;
@@ -119,26 +147,31 @@ export default class Questions extends React.Component {
     const seAnswers = this.state.seAnswers;
     const answerOptions = this.state.answerOptions;
     return (
-      <div className="questions-container m-auto">
-        {this.state.showBasicInfo && <div className=" w-100 p-3">
+      <div className="questions-container m-auto p-3">
+        {this.state.showBasicInfo && <div className="w-100">
           <p className="error">{this.state.error}</p>
           <p>1. What state do you live in?</p>
-          <input type="text" id="state"></input>
+          <select id="state">
+            <option></option>
+            {this.state.stateOptions.map(state => (<option key={state} value={state}>{state}</option>))}
+          </select>
           <p>2. What city do you live in?</p>
           <input type="text" id="city"></input>
           <p>3. What is the name of your school?</p>
           <input type="text" id="school"></input>
           <p>4. What grade are you in?</p>
-          {this.state.gradeOptions.map(grade => (
-            <button 
-              key={grade}
-              value={grade}
-              className={grade === this.state.grade ? "selected-grade mr-2" : "grades mr-2"}
-              onClick={this.handleGradeButtonClick}
-            >
-              {grade}
-            </button>
-          ))}
+          <div className="grade-buttons m-auto pb-5">
+            {this.state.gradeOptions.map(grade => (
+              <button 
+                key={grade}
+                value={grade}
+                className={grade === this.state.grade ? "selected-grade mr-3" : "grades mr-3"}
+                onClick={this.handleGradeButtonClick}
+              >
+                {grade}
+              </button>
+            ))}
+          </div>
           <div>
             <button className="btn" onClick={this.handleInfoSectionSubmit}>Next</button>
           </div>
@@ -146,8 +179,8 @@ export default class Questions extends React.Component {
         {this.state.showConflictQuestions && <div>
           {this.state.conflictQuestions.slice(0, this.state.showQuestionsCount).map((question, index) => (
             <div className="d-flex flex-column" key={index}>
-              <p className="text-question mx-3 p-1">{question}</p>
-              {conflictAnswers[index] && <p className="text-answer p-1">{answerOptions[conflictAnswers[index]-1]}</p>}
+              <p className="text-question mx-3 p-1">{question.text}</p>
+              {conflictAnswers[index] && <p className="text-answer p-1 m-2">{answerOptions[conflictAnswers[index]-1]}</p>}
             </div>
           ))}
           { conflictQuestions.length !== conflictAnswers.length && <div className="d-flex">{
@@ -169,8 +202,8 @@ export default class Questions extends React.Component {
           {this.state.showAngerQuestions && <div>
             {this.state.angerQuestions.slice(0, this.state.showQuestionsCount).map((question, index) => (
               <div className="d-flex flex-column" key={index}>
-                <p className="text-question mx-3 p-1">{question}</p>
-                {angerAnswers[index] && <p className="text-answer p-1">{answerOptions[angerAnswers[index]-1]}</p>}
+                <p className="text-question mx-3 p-1">{question.text}</p>
+                {angerAnswers[index] && <div className="text-answer p-1 m-2">{answerOptions[angerAnswers[index]-1]}</div>}
               </div>
             ))}
             { angerQuestions.length !== angerAnswers.length && <div className="d-flex">{
@@ -192,8 +225,8 @@ export default class Questions extends React.Component {
         {this.state.showSEQuestions && <div>
           {this.state.seQuestions.slice(0, this.state.showQuestionsCount).map((question, index) => (
             <div className="d-flex flex-column" key={index}>
-              <p className="text-question mx-3 p-1">{question}</p>
-              {seAnswers[index] && <p className="text-answer p-1">{answerOptions[seAnswers[index]-1]}</p>}
+              <p className="text-question mx-3 p-1">{question.text}</p>
+              {seAnswers[index] && <p className="text-answer p-1 m-2">{answerOptions[seAnswers[index]-1]}</p>}
             </div>
           ))}
           { seQuestions.length !== seAnswers.length && <div className="d-flex">{

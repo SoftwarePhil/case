@@ -1,10 +1,39 @@
 import React from 'react';
 import Questions from './Questions';
+import Results from './Results';
 
-const SurveyPage = () => (
-  <div>
-    <Questions />
-  </div>
-);
+export default class SurveyPage extends React.Component {
+  state = {
+    showQuestions: true,
+    showResults: false,
+    conflictAnswers: [],
+    angerAnswers: [],
+    seAnswers: [],
+  };
+  switchDisplay = (conflict, anger, se) => {
 
-export default SurveyPage;
+    this.setState(() => ({
+      showQuestions: false,
+      showResults: true,
+      conflictAnswers: conflict,
+      angerAnswers: anger,
+      seAnswers: se
+    }));
+  };
+  render() {
+    return (
+      <div className="survey-page p-5">
+        { this.state.showQuestions && <div>
+          <Questions switchDisplay={this.switchDisplay} />
+        </div> }
+        { this.state.showResults && <div>
+          <Results 
+            conflictAnswers={this.state.conflictAnswers}
+            angerAnswers={this.state.angerAnswers}
+            seAnswers={this.state.seAnswers}
+          /> 
+        </div> }
+      </div>
+    );
+  }
+};

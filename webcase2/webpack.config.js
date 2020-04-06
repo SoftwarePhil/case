@@ -17,7 +17,7 @@ module.exports = (env) => {
         test: /\.js$/,
         exclude: /node_modules/
       }, {
-        test: /\.s?css$/,
+        test: /\.(s?css)$/,
         use: CSSExtract.extract({
           use: [
             {
@@ -25,8 +25,7 @@ module.exports = (env) => {
               options: {
                 sourceMap: true
               }
-            },
-            {
+            }, {
               loader: 'sass-loader',
               options: {
                 sourceMap: true
@@ -43,7 +42,15 @@ module.exports = (env) => {
     devServer: {
       contentBase: path.join(__dirname, 'public'),
       historyApiFallback: true,
-      publicPath: '/dist/'
+      publicPath: '/dist/',
+      port: 3000,
+      proxy: {
+        '/case_prod': {
+          target: 'https://pzj9cridzd.execute-api.us-east-1.amazonaws.com',
+          secure: false,
+          changeOrigin: true
+        }
+      }
     }
   }
 }
