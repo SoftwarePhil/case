@@ -36,6 +36,10 @@
   width: 50%;
 }
 
+.button {
+  justify-content: flex-end;
+}
+
 .btn {
   background: $button-blue;
   border: $button-blue;
@@ -64,5 +68,6 @@
 }
 
 .grade-buttons {
-  display: inline-block;
+  display: flex;
+  justify-content: space-evenly
 }

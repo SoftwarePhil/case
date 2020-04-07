@@ -16,15 +16,15 @@ export default class Questions extends React.Component {
     angerAnswers: [],
     seQuestions: [],
     seAnswers: [],
-    showBasicInfo: false,
-    showConflictQuestions: true,
+    showBasicInfo: true,
+    showConflictQuestions: false,
     showAngerQuestions: false,
     showSEQuestions: false,
     showQuestionsCount: 1,
     showResults: false
   };
   componentDidMount() {
-    fetch('/case_prod/survey')
+    fetch('/api/case_prod/survey')
     .then(res => res.json())
     .then(result => {
       console.log(result);
@@ -147,7 +147,7 @@ export default class Questions extends React.Component {
     const seAnswers = this.state.seAnswers;
     const answerOptions = this.state.answerOptions;
     return (
-      <div className="questions-container m-auto p-3">
+      <div className="questions-container m-auto py-3 px-5">
         {this.state.showBasicInfo && <div className="w-100">
           <p className="error">{this.state.error}</p>
           <p>1. What state do you live in?</p>
@@ -172,7 +172,7 @@ export default class Questions extends React.Component {
               </button>
             ))}
           </div>
-          <div>
+          <div className="d-flex button">
             <button className="btn" onClick={this.handleInfoSectionSubmit}>Next</button>
           </div>
         </div>}
@@ -195,7 +195,7 @@ export default class Questions extends React.Component {
               </button>
             ))
           }</div>}
-          <div>
+          <div className="d-flex button">
             {conflictQuestions.length === conflictAnswers.length &&  <button className="btn" onClick={this.handleConflictSectionSubmit}>Next</button>}
           </div>
         </div>}
@@ -218,7 +218,7 @@ export default class Questions extends React.Component {
                 </button>
               ))
             }</div>}
-            <div>
+            <div className="d-flex button">
               {angerQuestions.length === angerAnswers.length &&  <button className="btn" onClick={this.handleAngerSectionSubmit}>Next</button>}
             </div>
           </div>}
@@ -241,7 +241,7 @@ export default class Questions extends React.Component {
               </button>
             ))
           }</div>}
-          <div>
+          <div className="d-flex button">
             {seQuestions.length === seAnswers.length &&  <button className="btn" onClick={this.handleSESectionSubmit}>Complete</button>}
           </div>
         </div>}
