@@ -11,8 +11,8 @@ class Header extends React.Component {
           </div>
         </header>
         <div id="nav">
-          <NavLink className="route-option pink-font" to="/resources" activeClass="is-active">Resources</NavLink>
-          <NavLink className="route-option green-font" to="/survey" activeClass="is-active">Survey</NavLink>
+          <NavLink className="route-option pink-font" to="/resources" activeClassName="is-active">Resources</NavLink>
+          <NavLink className="route-option green-font" to="/survey" activeClassName="is-active">Survey</NavLink>
           <NavLink className="route-option blue-font" to="/about" >About</NavLink>
         </div>
       </div>

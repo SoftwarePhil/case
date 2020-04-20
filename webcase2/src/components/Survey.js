@@ -1,13 +1,13 @@
 import React from 'react';
+import SurveySection from './SurveySection';
 
-export default class Questions extends React.Component {
+export default class Survey extends React.Component {
   state = {
     stateName: undefined,
     cityName: undefined,
     schoolName: undefined,
     grade: undefined,
     error: undefined,
-    answerOptions: ['Never', 'Almost Never', 'Sometimes', 'Almost Always', 'Always'],
     gradeOptions: [],
     stateOptions: [],
     conflictQuestions: [],
@@ -16,25 +16,23 @@ export default class Questions extends React.Component {
     angerAnswers: [],
     seQuestions: [],
     seAnswers: [],
-    showBasicInfo: true,
-    showConflictQuestions: false,
+    showBasicInfo: false,
+    showConflictQuestions: true,
     showAngerQuestions: false,
     showSEQuestions: false,
     showQuestionsCount: 1,
-    showResults: false
   };
   componentDidMount() {
-    fetch('/api/case_prod/survey')
+    fetch('case_prod/survey')
     .then(res => res.json())
     .then(result => {
-      console.log(result);
+
       const conflict = [];
       const anger = [];
       const se = [];
       let gradeOptions = [];
       let stateOptions = [];
       result.survey.map(object => {
-        console.log(object);
         if(object.id === 'grade') {
           gradeOptions = object.data;
         }
@@ -60,7 +58,6 @@ export default class Questions extends React.Component {
         gradeOptions,
         stateOptions
       }));
-      console.log(this.state);
     });
   };
   handleGradeButtonClick = (e) => {
@@ -133,19 +130,10 @@ export default class Questions extends React.Component {
     this.setState(() => ({
       showQuestionsCount: 1,
       showSEQuestions: false,
-      showResults: true
     }));
     this.props.switchDisplay(this.state.conflictAnswers, this.state.angerAnswers, this.state.seAnswers);
-    console.log(this.state);
   }
   render() {
-    const conflictQuestions = this.state.conflictQuestions;
-    const conflictAnswers = this.state.conflictAnswers;
-    const angerQuestions = this.state.angerQuestions;
-    const angerAnswers = this.state.angerAnswers;
-    const seQuestions = this.state.seQuestions;
-    const seAnswers = this.state.seAnswers;
-    const answerOptions = this.state.answerOptions;
     return (
       <div className="questions-container m-auto py-3 px-5">
         {this.state.showBasicInfo && <div className="w-100">
@@ -176,75 +164,36 @@ export default class Questions extends React.Component {
             <button className="btn" onClick={this.handleInfoSectionSubmit}>Next</button>
           </div>
         </div>}
-        {this.state.showConflictQuestions && <div>
-          {this.state.conflictQuestions.slice(0, this.state.showQuestionsCount).map((question, index) => (
-            <div className="d-flex flex-column" key={index}>
-              <p className="text-question mx-3 p-1">{question.text}</p>
-              {conflictAnswers[index] && <p className="text-answer p-1 m-2">{answerOptions[conflictAnswers[index]-1]}</p>}
-            </div>
-          ))}
-          { conflictQuestions.length !== conflictAnswers.length && <div className="d-flex">{
-            this.state.answerOptions.map((option, index) => (
-            <button 
-              key={index}
-              className="text-answer p-1 m-1" 
-              value={index + 1}
-              onClick={this.handleConflictQuestionSubmit}
-              >
-                {option}
-              </button>
-            ))
-          }</div>}
-          <div className="d-flex button">
-            {conflictQuestions.length === conflictAnswers.length &&  <button className="btn" onClick={this.handleConflictSectionSubmit}>Next</button>}
-          </div>
-        </div>}
-          {this.state.showAngerQuestions && <div>
-            {this.state.angerQuestions.slice(0, this.state.showQuestionsCount).map((question, index) => (
-              <div className="d-flex flex-column" key={index}>
-                <p className="text-question mx-3 p-1">{question.text}</p>
-                {angerAnswers[index] && <div className="text-answer p-1 m-2">{answerOptions[angerAnswers[index]-1]}</div>}
-              </div>
-            ))}
-            { angerQuestions.length !== angerAnswers.length && <div className="d-flex">{
-              this.state.answerOptions.map((option, index) => (
-              <button 
-                key={index}
-                className="text-answer p-1 m-1" 
-                value={index + 1}
-                onClick={this.handleAngerQuestionSubmit}
-                >
-                  {option}
-                </button>
-              ))
-            }</div>}
-            <div className="d-flex button">
-              {angerQuestions.length === angerAnswers.length &&  <button className="btn" onClick={this.handleAngerSectionSubmit}>Next</button>}
-            </div>
-          </div>}
-        {this.state.showSEQuestions && <div>
-          {this.state.seQuestions.slice(0, this.state.showQuestionsCount).map((question, index) => (
-            <div className="d-flex flex-column" key={index}>
-              <p className="text-question mx-3 p-1">{question.text}</p>
-              {seAnswers[index] && <p className="text-answer p-1 m-2">{answerOptions[seAnswers[index]-1]}</p>}
-            </div>
-          ))}
-          { seQuestions.length !== seAnswers.length && <div className="d-flex">{
-            this.state.answerOptions.map((option, index) => (
-            <button 
-              key={index}
-              className="text-answer p-1 m-1" 
-              value={index + 1}
-              onClick={this.handleSEQuestionSubmit}
-              >
-                {option}
-              </button>
-            ))
-          }</div>}
-          <div className="d-flex button">
-            {seQuestions.length === seAnswers.length &&  <button className="btn" onClick={this.handleSESectionSubmit}>Complete</button>}
-          </div>
-        </div>}
+        {this.state.showConflictQuestions && 
+          <SurveySection 
+            questions={this.state.conflictQuestions}
+            answers={this.state.conflictAnswers}
+            handleQuestionSubmit={this.handleConflictQuestionSubmit}
+            handleSubmit={this.handleConflictSectionSubmit}
+            showQuestionsCount={this.state.showQuestionsCount}
+            title={'Conflict Questions'}
+          />
+        }
+        {this.state.showAngerQuestions && 
+          <SurveySection 
+            questions={this.state.angerQuestions}
+            answers={this.state.angerAnswers}
+            handleQuestionSubmit={this.handleAngerQuestionSubmit}
+            handleSubmit={this.handleAngerSectionSubmit}
+            showQuestionsCount={this.state.showQuestionsCount}
+            title={'Anger Questions'}
+          />
+        }
+        {this.state.showSEQuestions && 
+          <SurveySection 
+            questions={this.state.seQuestions}
+            answers={this.state.seAnswers}
+            handleQuestionSubmit={this.handleSEQuestionSubmit}
+            handleSubmit={this.handleSESectionSubmit}
+            showQuestionsCount={this.state.showQuestionsCount}
+            title={'Self Esteem Questions'}
+          />
+        }
       </div>
     );
   }
