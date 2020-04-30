@@ -23,7 +23,7 @@ CMD ["npm", "start"]
 # add app
 COPY . ./
 
-expose 3000:3000
+expose 3000
 
 # start app
 CMD ["npm", "start"]

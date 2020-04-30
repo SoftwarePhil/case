@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.static(publicPath));
 
-app.use('/api', proxy('https://pzj9cridzd.execute-api.us-east-1.amazonaws.com'))
+app.use('/', proxy('https://pzj9cridzd.execute-api.us-east-1.amazonaws.com'))
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
