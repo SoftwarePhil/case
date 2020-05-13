@@ -16,17 +16,16 @@ export default class Survey extends React.Component {
     angerAnswers: [],
     seQuestions: [],
     seAnswers: [],
-    showBasicInfo: false,
+    showBasicInfo: true,
     showConflictQuestions: true,
-    showAngerQuestions: false,
-    showSEQuestions: false,
+    showAngerQuestions: true,
+    showSEQuestions: true,
     showQuestionsCount: 1,
   };
   componentDidMount() {
     fetch('case_prod/survey')
     .then(res => res.json())
     .then(result => {
-
       const conflict = [];
       const anger = [];
       const se = [];
