@@ -5,7 +5,7 @@ require "aws-sdk-ecr"
 # (1) Fetch all Docker images pushed to ECR ever (that's why there's a loop)
 # so we can pull the old old ones as well
 
-major_version = "v0"
+major_version = "v1"
 repository_name = "case-app"
 
 client = Aws::ECR::Client.new

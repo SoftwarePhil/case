@@ -9,6 +9,7 @@
 
 # dependencies
 /node_modules
+/public/dist/
 
 # profiling files
 chrome-profiler-events.json
@@ -22,6 +23,8 @@ speed-measure-plugin.json
 *.launch
 .settings/
 *.sublime-workspace
+yarn.lock
+
 
 # IDE - VSCode
 .vscode/*
@@ -44,3 +47,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+./vscode
+
+ node_modules/
