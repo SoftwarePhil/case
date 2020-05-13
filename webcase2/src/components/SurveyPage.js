@@ -1,5 +1,5 @@
 import React from 'react';
-import Questions from './Questions';
+import Survey from './Survey';
 import Results from './Results';
 
 export default class SurveyPage extends React.Component {
@@ -24,7 +24,7 @@ export default class SurveyPage extends React.Component {
     return (
       <div className="survey-page p-5">
         { this.state.showQuestions && <div>
-          <Questions switchDisplay={this.switchDisplay} />
+          <Survey switchDisplay={this.switchDisplay} />
         </div> }
         { this.state.showResults && <div>
           <Results 

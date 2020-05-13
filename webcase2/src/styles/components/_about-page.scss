@@ -1,3 +1,9 @@
+.about-page {
+  background: url('../assets/background.jpeg');
+  min-height: 800px;
+  height: calc(100vh - 10rem);
+}
+
 .about-container {
   background: black;
   width: 600px;
