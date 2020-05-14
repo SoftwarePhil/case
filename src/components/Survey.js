@@ -41,13 +41,16 @@ export default class Survey extends React.Component {
         }
         switch(object.label) {
           case 'anger':
-            anger.push({id: object.id, text: object.data});
+            if (object.type === 'question')
+              anger.push({id: object.id, text: object.data});
             break;
           case 'conflict':
-            conflict.push({id: object.id, text: object.data});
+            if (object.type === 'question')
+              conflict.push({id: object.id, text: object.data});
             break;
-          case 'self esteem':
-            se.push({id: object.id, text: object.data});
+          case 'selfesteem':
+            if (object.type === 'question')
+              se.push({id: object.id, text: object.data});
             break;
         }
       }); 
