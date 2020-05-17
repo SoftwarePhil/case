@@ -3,5 +3,5 @@
 
 CASE app
 
-http://www.stateyourcase.us
+http://www.beta.stateyourcase.us
 
