@@ -3,6 +3,6 @@
 
 CASE app
 
-http://www.beta.stateyourcase.us:3000 => master branch
+http://beta.stateyourcase.us:3000/ => master branch
 http://www.stateyourcase.us => last release 
 
