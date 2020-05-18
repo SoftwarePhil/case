@@ -1,0 +1,36 @@
+.text-question {
+  background: white;
+  color: black;
+  align-self: flex-start;
+  max-width: 80%;
+  border-radius: 15px;
+  animation-iteration-count: 1;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.text-answer {
+  background: $question-purple;
+  border-radius: 15px;
+  color: white;
+  border: $question-purple;
+  align-self: flex-end;
+  animation-iteration-count: 1;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.msg {
+  animation-name: msg;
+}
+
+@keyframes msg {
+  0% {
+    left: -4em;
+    transform: scale(0);
+  }
+  40% {
+    left: 0;
+    transform: scale(1);
+  }
+}
