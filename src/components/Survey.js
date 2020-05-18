@@ -142,15 +142,15 @@ export default class Survey extends React.Component {
         {this.state.showBasicInfo && <div className="w-100">
           <p className="error">{this.state.error}</p>
           <p>1. What state do you live in?</p>
-          <select id="state">
+          <select id="state" className="w-50 p-1">
             <option></option>
             {this.state.stateOptions.map(state => (<option key={state} value={state}>{state}</option>))}
           </select>
-          <p>2. What city do you live in?</p>
-          <input type="text" id="city"></input>
-          <p>3. What is the name of your school?</p>
-          <input type="text" id="school"></input>
-          <p>4. What grade are you in?</p>
+          <p className="mt-3 mb-1">2. What city do you live in?</p>
+          <input type="text" id="city" className="w-50 p-1"></input>
+          <p className="mt-3 mb-1">3. What is the name of your school?</p>
+          <input type="text" id="school" className="w-50 p-1"></input>
+          <p className="mt-3 mb-1">4. What grade are you in?</p>
           <div className="grade-buttons m-auto pb-5">
             {this.state.gradeOptions.map(grade => (
               <button 
